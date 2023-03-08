@@ -68,7 +68,11 @@ body {
   font-size: 14px;
   color: #666;
 }
-
+.note .bottom .btns {
+  font-size: 20px;
+  display: flex;
+  gap: 16px;
+}
 .note .bottom button {
   margin: 0 6px;
 }
