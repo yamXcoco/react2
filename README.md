@@ -2,6 +2,8 @@
 
 <!-- 제이슨 섭사용하기 -->
 
+# https://www.daleseo.com/js-window-fetch/
+
 # 터미널 열고 (npm i -g json-server)치기
 
 # 터미널 열고 (json-server --watch ./src/db/data.json --port 3001)치기
