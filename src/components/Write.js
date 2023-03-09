@@ -10,10 +10,12 @@ export default function Write() {
 
   function onWrite(e) {
     e.preventDefault()
+    //새로고침방지
     console.log(titleRef.current.value)
     console.log(detailRef.current.value)
 
     fetch('http://localhost:3001/notes', {
+      //시간순서에 따라 정렬(?_sort=date&_order=desc)
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,6 +28,7 @@ export default function Write() {
     }).then((res) => {
       if (res.ok) {
         navigate('/')
+        // 다끝내고 원래페이지(/)로 넘어가자
       }
     })
   }

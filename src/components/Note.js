@@ -1,19 +1,36 @@
-import React from 'react'
-import { MdEdit, MdDelete } from 'react-icons/md'
-// 리액트 아이콘 사용하기
-// npm install react-icons
-export default function note({ note }) {
-  //노트 데이터 주기
+import { useState } from 'react'
+import { MdMode, MdDelete } from 'react-icons/md'
+
+export default function Note({ note }) {
+  const [screen, setScreen] = useState(false)
+
+  function onDelete() {
+    fetch(`http://localhost:3001/notes/${note.id}`, {
+      method: 'DELETE',
+    }).then((res) => {
+      if (res.ok) {
+        setScreen(true)
+      }
+    })
+  }
+
+  if (screen === true) {
+    return null
+  }
+
   return (
     <li className="note">
-      {/* 원래 여기에key={note.id}가 있었음 */}
       <h4 className="title">{note.title}</h4>
       <p>{note.detail}</p>
       <div className="bottom">
         <div className="date">{note.date}</div>
         <div className="btns">
-          <MdEdit />
-          <MdDelete />
+          <span>
+            <MdMode />
+          </span>
+          <span>
+            <MdDelete onClick={onDelete} />
+          </span>
         </div>
       </div>
     </li>

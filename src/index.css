@@ -73,6 +73,9 @@ body {
   display: flex;
   gap: 16px;
 }
+.note .bottom .btns span {
+  cursor: pointer;
+}
 .note .bottom button {
   margin: 0 6px;
 }
