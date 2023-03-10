@@ -1,11 +1,26 @@
 import { useEffect, useState } from 'react'
 import Note from './Note'
 import { db } from '../firebase'
+import { collection, query, onSnapshot } from 'firebase/firestore'
 
 export default function NoteList() {
   const [notes, setNotes] = useState([])
+
   useEffect(() => {
-    console.log(db)
+    const q = query(collection(db, 'notes'))
+    const unsubscribe = onSnapshot(q, querySnapshot => {
+      const items = []
+      querySnapshot.forEach(doc => {
+        items.push({
+          ...doc.data(),
+          //만들어둔 문서 가져오기
+          id: doc.id,
+          //지정한 자동생성 아이디도 가져오기
+        })
+      })
+      // console.log(items)
+      setNotes(items)
+    })
   }, [])
 
   return (
